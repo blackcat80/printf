@@ -6,51 +6,45 @@
 #    By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 17:41:44 by csitja-b          #+#    #+#              #
-#    Updated: 2022/10/02 18:21:22 by csitja-b         ###   ########.fr        #
+#    Updated: 2022/10/08 20:54:05 by csitja-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#Variables
-
+RM			= rm -f 
+AR			= ar -rcs
+HEADER		= printf.h Libft/libft.h
 NAME		= libftprintf.a
-INCLUDE		= includeLIBFT		= libft
-SRC_DIR		= src/
-OBJ_DIR		= obj/
-CFLAGS		= -Wall -Werror -Wextra -I
-RM			= rm -f
-AR			= ar rcs
+CFLAGS		= -Wall -Werror -Wextra 
 
-#Sources
+SRC			= 
 
-SRC_FILES	=	ft_printf ft_printf_utils ft_print_ptr ft_print_unsigned ft_print_hex
+OBJ			=
 
+OBJ = $(SRC:.c=.o)
 
-SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
-OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+INCLUDE = -I ./
 
-// OBJF		=	.cache_exists
-all:		$(NAME)
+all: $(NAME)
 
-$(NAME):	$(OBJ)
-			@make -C $(LIBFT)
-			@cp libft/libft.a .
-			@mv libft.a $(NAME)
-			@$(AR) $(NAME) $(OBJ)
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+$(NAME): $(OBJ) $(HEADER)
+	$(AR) $(NAME) $(OBJ)
 
-$(OBJF):
-			@mkdir -p $(OBJ_DIR)
+bonus: $(BONUS)
 
-.PHONY:		all clean fclean re 
+$(BONUS): $(OBJ) $(HEADER)
+	touch $@
+	$(AR) $(NAME) $(OBJ)
 
-clean:
-			@$(RM) -rf $(OBJ_DIR)
-			@make clean -C $(LIBFT)
+.PHONY: all clean fclean re 
 
-fclean:		clean
-			@$(RM) -f $(NAME)
-			@$(RM) -f $(LIBFT)/libft.a
+clean: 
+	$(RM) $(OBJ)
+	
+fclean: clean 
+	$(RM) $(NAME)
 
-re:			fclean all 
+re : fclean all
+

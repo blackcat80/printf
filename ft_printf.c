@@ -6,11 +6,11 @@
 /*   By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 21:23:32 by csitja-b          #+#    #+#             */
-/*   Updated: 2022/10/06 21:28:34 by csitja-b         ###   ########.fr       */
+/*   Updated: 2022/10/08 22:36:04 by csitja-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 #include <stdio.h>
 
 // comprobar todo el codigo para ver si lo puedo reducir
@@ -28,14 +28,14 @@ static void	check_format(char const *str, va_list arg, int index, int *arg_len)
 		*arg_len += write(1, "%", 1);
 	if (str[index] == 'd' || str[index] == 'i')
 		print_int(arg, arg_len);
-	if (str[index] == 'u')
-		print_uint(arg, arg_len);
-	if (str[index] == 'x' || str[index] == 'X')
-		print_hexa(arg, arg_len, str[index]);
-	if (str[index] == 'p')
-		print_address_hexa(arg, arg_len);
-	if (str[index] == 's')
-		print_str(arg, arg_len);
+//	if (str[index] == 'u')
+//		print_uint(arg, arg_len);
+//	if (str[index] == 'x' || str[index] == 'X')
+//		print_hexa(arg, arg_len, str[index]);
+//	if (str[index] == 'p')
+//		print_address_hexa(arg, arg_len);
+//	if (str[index] == 's')
+//		print_str(arg, arg_len);
 }
 
 int	ft_printf(const char *format, ...)
@@ -63,3 +63,9 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (len);
 }
+
+int main (void)
+{
+	ft_printf("%c, %c", 'F', 'E');
+}
+
