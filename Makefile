@@ -6,7 +6,7 @@
 #    By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 17:41:44 by csitja-b          #+#    #+#              #
-#    Updated: 2022/10/08 20:54:05 by csitja-b         ###   ########.fr        #
+#    Updated: 2022/10/14 19:49:17 by csitja-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,10 @@ HEADER		= printf.h Libft/libft.h
 NAME		= libftprintf.a
 CFLAGS		= -Wall -Werror -Wextra 
 
-SRC			= 
-
-OBJ			=
+SRC			= functions_1.c \
+			  functions_3.c \
+			  functions_2.c \
+			  ft_printf.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -26,17 +27,12 @@ INCLUDE = -I ./
 
 all: $(NAME)
 
-%.o: %.c $(HEADER)
+%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(NAME): $(OBJ) $(HEADER)
+$(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
-bonus: $(BONUS)
-
-$(BONUS): $(OBJ) $(HEADER)
-	touch $@
-	$(AR) $(NAME) $(OBJ)
 
 .PHONY: all clean fclean re 
 

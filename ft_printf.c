@@ -6,32 +6,26 @@
 /*   By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 21:23:32 by csitja-b          #+#    #+#             */
-/*   Updated: 2022/10/12 19:12:25 by csitja-b         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:49:26 by csitja-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
 
 static void	check_format(char const *str, va_list arg, int index, int *arg_len)
 {
-	char	c;
-
 	if (str[index] == 'c')
-	{
-		c = va_arg(arg, int);
-		*arg_len += write(1, &c, 1);
-	}
+		return (ft_putchar(va_arg(arg, int), arg_len));
 	if (str[index] == '%')
 		*arg_len += write(1, "%", 1);
 	if (str[index] == 'd' || str[index] == 'i')
 		print_int(arg, arg_len);
 	if (str[index] == 'u')
 		print_uint(arg, arg_len);
-//	if (str[index] == 'x' || str[index] == 'X')
-//		print_hexa(arg, arg_len, str[index]);
-//	if (str[index] == 'p')
-//		print_address_hexa(arg, arg_len);
+	if (str[index] == 'x' || str[index] == 'X')
+		print_hexa(arg, arg_len, str[index]);
+	if (str[index] == 'p')
+		print_address_hexa(arg, arg_len);
 	if (str[index] == 's')
 		print_str(arg, arg_len);
 }
@@ -39,7 +33,7 @@ static void	check_format(char const *str, va_list arg, int index, int *arg_len)
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int		len;
+	int	#include <stdio.h>	len;
 	int		*arg_len;
 	int		i;
 
@@ -53,9 +47,15 @@ int	ft_printf(const char *format, ...)
 		{
 			i++;
 			check_format(format, args, i, arg_len);
+			if (len == -1)
+				return (-1);				
 		}
 		else
-			len += write(1, &format[i], 1);
+		{
+			if (write(1, &format[i], 1) != 1)
+				return (-1);
+			len ++;
+		}
 		i++;
 	}
 	va_end(args);
@@ -64,6 +64,8 @@ int	ft_printf(const char *format, ...)
 /*
 int main (void)
 {
-	ft_printf("%c, %c", 'F', 'E');
+	char	f = 'F';
+	int		e = 12;
+	ft_printf("%c, %d", f, e);
 }
 */
