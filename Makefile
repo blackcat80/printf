@@ -6,7 +6,7 @@
 #    By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 17:41:44 by csitja-b          #+#    #+#              #
-#    Updated: 2022/10/14 19:49:17 by csitja-b         ###   ########.fr        #
+#    Updated: 2022/10/14 19:52:13 by csitja-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,4 +43,3 @@ fclean: clean
 	$(RM) $(NAME)
 
 re : fclean all
-
