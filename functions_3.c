@@ -6,11 +6,11 @@
 /*   By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 22:15:16 by csitja-b          #+#    #+#             */
-/*   Updated: 2022/10/14 19:31:59 by csitja-b         ###   ########.fr       */
+/*   Updated: 2022/10/15 21:22:12 by csitja-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	ft_putchar(char c, int *base_len)
 {
@@ -52,11 +52,19 @@ void	ft_putstr(char *s, int *base_len)
 	int	i;
 
 	i = 0;
+	if (s == NULL)
+	{
+		if (write(1, "(null)", 6) != 6)
+		{
+			*base_len = -1;
+			return ;
+		}
+	}
 	while (s[i])
 	{
+		ft_putchar(s[i], base_len);
 		if (*base_len == -1)
 			break ;
-		ft_putchar(s[i], base_len);
 		i++;
 	}
 }
@@ -73,4 +81,22 @@ void	ft_putnbr_u(unsigned int n, int *base_len)
 	ft_putchar(n + '0', base_len);
 	if (*base_len == -1)
 		return ;
+}
+
+void	ft_putnbr_base_ul(unsigned long n, char *base, int *len)
+{
+	unsigned long	base_len;
+
+	if (check_base(base))
+	{
+		base_len = 0;
+		while (base[base_len])
+			base_len++;
+		if (n > base_len - 1)
+		{
+			ft_putnbr_base_ul(n / base_len, base, len);
+			n %= base_len;
+		}
+		ft_putchar(base[n], len);
+	}
 }

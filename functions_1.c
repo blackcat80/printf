@@ -6,12 +6,11 @@
 /*   By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 22:14:29 by csitja-b          #+#    #+#             */
-/*   Updated: 2022/10/14 19:30:11 by csitja-b         ###   ########.fr       */
+/*   Updated: 2022/10/15 20:28:00 by csitja-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-//#include "libft/libft.h"
+#include "ft_printf.h"
 
 // funcion %c para imprimir un solo caracter
 

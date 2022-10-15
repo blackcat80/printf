@@ -6,57 +6,53 @@
 /*   By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 21:23:32 by csitja-b          #+#    #+#             */
-/*   Updated: 2022/10/14 19:49:26 by csitja-b         ###   ########.fr       */
+/*   Updated: 2022/10/15 21:27:55 by csitja-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-static void	check_format(char const *str, va_list arg, int index, int *arg_len)
+static void	check_format(char const *str, va_list arg, int *arg_len)
 {
-	if (str[index] == 'c')
+	if (*str == 'c')
 		return (ft_putchar(va_arg(arg, int), arg_len));
-	if (str[index] == '%')
+	if (*str == '%')
 		*arg_len += write(1, "%", 1);
-	if (str[index] == 'd' || str[index] == 'i')
+	if (*str == 'd' || *str == 'i')
 		print_int(arg, arg_len);
-	if (str[index] == 'u')
+	if (*str == 'u')
 		print_uint(arg, arg_len);
-	if (str[index] == 'x' || str[index] == 'X')
-		print_hexa(arg, arg_len, str[index]);
-	if (str[index] == 'p')
+	if (*str == 'x' || *str == 'X')
+		print_hexa(arg, arg_len,*str);
+	if (*str == 'p')
 		print_address_hexa(arg, arg_len);
-	if (str[index] == 's')
+	if (*str == 's')
 		print_str(arg, arg_len);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int	#include <stdio.h>	len;
-	int		*arg_len;
-	int		i;
+	int		len;
 
 	va_start(args, format);
 	len = 0;
-	i = 0;
-	arg_len = &len;
-	while (format[i])
+	while (*format)
 	{
-		if (format[i] == '%')
+		if (*format == '%')
 		{
-			i++;
-			check_format(format, args, i, arg_len);
+			format++;
+			check_format(format, args, &len);
 			if (len == -1)
-				return (-1);				
+				return (-1);
 		}
 		else
 		{
-			if (write(1, &format[i], 1) != 1)
+			if (write(1, format, 1) != 1)
 				return (-1);
 			len ++;
 		}
-		i++;
+		format++;
 	}
 	va_end(args);
 	return (len);
@@ -64,8 +60,12 @@ int	ft_printf(const char *format, ...)
 /*
 int main (void)
 {
-	char	f = 'F';
-	int		e = 12;
-	ft_printf("%c, %d", f, e);
-}
-*/
+	int		f = 0;
+	char 	*s = "Hello World";
+
+	f =	ft_printf("String: %s, %s\n", s, s);
+	ft_printf("%d\n", f);
+	ft_printf("%p\n", "");
+	return (0);
+
+}*/

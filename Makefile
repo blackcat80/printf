@@ -6,13 +6,13 @@
 #    By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 17:41:44 by csitja-b          #+#    #+#              #
-#    Updated: 2022/10/14 19:52:13 by csitja-b         ###   ########.fr        #
+#    Updated: 2022/10/15 20:16:21 by csitja-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 RM			= rm -f 
 AR			= ar -rcs
-HEADER		= printf.h Libft/libft.h
+HEADER		= printf.h
 NAME		= libftprintf.a
 CFLAGS		= -Wall -Werror -Wextra 
 

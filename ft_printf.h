@@ -6,12 +6,12 @@
 /*   By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:01:58 by csitja-b          #+#    #+#             */
-/*   Updated: 2022/10/14 19:49:20 by csitja-b         ###   ########.fr       */
+/*   Updated: 2022/10/15 20:54:33 by csitja-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <unistd.h>
@@ -34,10 +34,13 @@ void		ft_putchar(char c, int *base_len);
 void		ft_putstr(char *s, int *base_len);
 void		ft_putnbr(int n, int *base_len);
 void		ft_putnbr_u(unsigned int n, int *base_len);
+void		ft_putnbr_base_ul(unsigned long n, char *base, int *len);
 
 // funcions en functions_2
 
 void		print_hexa(va_list arg, int *arg_len, char c);
 void		print_address_hexa(va_list arg, int *arg_len);
+int			check_base(char *base);
+void		ft_putnbr_base_u(unsigned int n, char *base, int *len);
 
 #endif

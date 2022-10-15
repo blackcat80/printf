@@ -6,11 +6,56 @@
 /*   By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:54:04 by csitja-b          #+#    #+#             */
-/*   Updated: 2022/10/14 19:49:23 by csitja-b         ###   ########.fr       */
+/*   Updated: 2022/10/15 21:07:43 by csitja-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
+
+int	check_base(char *base)
+{
+	int	i;
+	int	z;
+
+	i = 0;
+	z = 0;
+	if (base[0] == '\0' || base[1] == '\0')
+		return (0);
+	while (base[i])
+	{
+		z = i + 1;
+		if (base[i] == '+' || base[i] == '-')
+			return (0);
+		if (base[i] < 32 || base[i] > 126)
+			return (0);
+		while (base[z])
+		{
+			if (base[i] == base[z])
+				return (0);
+			z++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+void	ft_putnbr_base_u(unsigned int n, char *base, int *len)
+{
+	unsigned int	base_len;
+
+	if (check_base(base))
+	{
+		base_len = 0;
+		while (base[base_len])
+			base_len++;
+		if (n > base_len - 1)
+		{
+			ft_putnbr_base_ul(n / base_len, base, len);
+			n %= base_len;
+		}
+		ft_putchar(base[n], len);
+	}
+}
 
 void	print_hexa(va_list arg, int *arg_len, char c)
 {
@@ -29,7 +74,7 @@ void	print_address_hexa(va_list arg, int *arg_len)
 
 	address = va_arg(arg, unsigned long);
 	if ((void *)address == NULL)
-		ft_putstr(PTR_NULL, arg_len);
+		ft_putstr("0x0", arg_len);
 	else
 	{
 		ft_putstr("0x", arg_len);
