@@ -6,7 +6,7 @@
 /*   By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 22:15:16 by csitja-b          #+#    #+#             */
-/*   Updated: 2022/10/15 21:22:12 by csitja-b         ###   ########.fr       */
+/*   Updated: 2022/10/17 20:48:24 by csitja-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,12 @@ void	ft_putnbr_base_ul(unsigned long n, char *base, int *len)
 		if (n > base_len - 1)
 		{
 			ft_putnbr_base_ul(n / base_len, base, len);
+			if (*len == -1)
+				return ;
 			n %= base_len;
 		}
 		ft_putchar(base[n], len);
+		if (*len == -1)
+			return ;
 	}
 }

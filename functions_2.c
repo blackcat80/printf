@@ -6,7 +6,7 @@
 /*   By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:54:04 by csitja-b          #+#    #+#             */
-/*   Updated: 2022/10/15 21:07:43 by csitja-b         ###   ########.fr       */
+/*   Updated: 2022/10/17 20:48:08 by csitja-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,13 @@ void	ft_putnbr_base_u(unsigned int n, char *base, int *len)
 		if (n > base_len - 1)
 		{
 			ft_putnbr_base_ul(n / base_len, base, len);
+			if (*len == -1)
+				return ;
 			n %= base_len;
 		}
 		ft_putchar(base[n], len);
+		if (*len == -1)
+			return ;
 	}
 }
 
@@ -74,10 +78,18 @@ void	print_address_hexa(va_list arg, int *arg_len)
 
 	address = va_arg(arg, unsigned long);
 	if ((void *)address == NULL)
+	{
 		ft_putstr("0x0", arg_len);
+		if (*arg_len == -1)
+			return ;
+	}
 	else
 	{
 		ft_putstr("0x", arg_len);
+		if (*arg_len == -1)
+			return ;
 		ft_putnbr_base_ul(address, "0123456789abcdef", arg_len);
+		if (*arg_len == -1)
+			return ;
 	}
 }
