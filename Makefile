@@ -6,7 +6,7 @@
 #    By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 17:41:44 by csitja-b          #+#    #+#              #
-#    Updated: 2022/10/20 19:45:43 by csitja-b         ###   ########.fr        #
+#    Updated: 2022/10/20 20:20:14 by csitja-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,15 +28,15 @@ SRC			= functions_1.c \
 
 #Colors
 
-DEF_COLOR   = \033[0;39m
-GRAY 	   	= \033[0;90m
-RED		    = \033[0;91m
-GREEN	    = \033[0;92m
-YELLOW	    = \033[0;93m
-BLUE 		= \033[0;94m
-MAGENTA     = \033[0;95m
-CYAN        = \033[0;96m
-WHITE       = \033[0;97m
+DEF_COLOR   = \033[1;39m
+GRAY 	   	= \033[1;90m
+RED		    = \033[1;91m
+GREEN	    = \033[1;32m
+YELLOW	    = \033[1;93m
+BLUE 		= \033[1;94m
+MAGENTA     = \033[1;95m
+CYAN        = \033[1;96m
+WHITE       = \033[1;97m
 
 OBJ		    = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
