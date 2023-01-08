@@ -6,7 +6,7 @@
 /*   By: csitja-b <csitja-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 21:23:32 by csitja-b          #+#    #+#             */
-/*   Updated: 2022/10/20 17:52:58 by csitja-b         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:24:09 by csitja-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,38 +33,27 @@ static void	check_format(char const *str, va_list arg, int *arg_len)
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int		len;
+	int		arg_len;
 
 	va_start(args, format);
-	len = 0;
+	arg_len = 0;
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			check_format(format, args, &len);
-			if (len == -1)
+			check_format(format, args, &arg_len);
+			if (arg_len == -1)
 				return (-1);
 		}
 		else
 		{
 			if (write(1, format, 1) != 1)
 				return (-1);
-			len ++;
+			arg_len ++;
 		}
 		format++;
 	}
 	va_end(args);
-	return (len);
+	return (arg_len);
 }
-/*
-int main (void)
-{
-	int		f = 0;
-	char 	*s = "Hello World";
-
-	f =	ft_printf("String: %s, %s\n", s, s);
-	ft_printf("%d\n", f);
-	ft_printf("%p\n", "");
-	return (0);
-}*/
